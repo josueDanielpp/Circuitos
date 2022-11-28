@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de numeros complejos</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+    <header>
+        <h4>PROYECTO DE CIRCUITOS</h4>
+        <h4>*Josue Daniel Parra Davalos</h4>
+        <h4>*Edgar Ulises Neri Duron</h4>
+        <h4>*Adrew Rafael Abundez Elias</h4>
+    </header>
+    <br><br><br><br><br><br><br><br><br>
+    <article>
+        <form action="" id="formulario" >
+            
+            <div class="contenedor" id="calcula">
+                <h1>CALCULADORA</h1>
+                <div>
+                    <H3>INGRESA EL PRIMER NUMERO</H3>
+                    <input type="number" name="" id="" value="0" onkeypress="return check(event)" >
+                    <select name="" id="no1">
+                        <option value="+">+</option>
+                        <option value="-">-</option>
+                    </select>
+                    <input type="number" name="" id="" value="0" onkeypress="return check(event)">
+                    <label for="">I</label>
+                </div>
+                <div>
+                    <H3>INGRESA EL SEGUNDO NUMERO</H3>
+                    <input type="number" name="" id="" value="0" onkeypress="return check(event)">
+                    <select name="" id="no2">
+                        <option value="+">+</option>
+                        <option value="-">-</option>
+                    </select>
+                    <input type="number" name="" id="" value="0" onkeypress="return check(event)">
+                    <label for="">I</label>
+                </div>
+                <div>
+                    <H3>ELIGA LA OPERACION A HACER</H3>
+                    <select name="" id="operacion">
+                        <option value="">SUMA</option>
+                        <option value="">RESTA</option>
+                        <option value="">MULTIPLICACION</option>
+                        <option value="">DIVISION</option>
+                    </select>
+                </div>
+                <br><br>
+                <input type="button" value="CALCULADORA" class="boton" onclick="operacion()">
+                <input type="button" value="REGRESAR" class="boton" onclick="inicio()">
+            </div>
+            <div  class="contenedor"  id="CRP">
+                <H3>CONVERSION A POLAR</H3>
+                <input type="number" name="" id="" value="0" onkeypress="return check(event)">
+                <select name="" id="no1">
+                    <option value="+">+</option>
+                    <option value="-">-</option>
+                </select>
+                <input type="number" name="" id="" value="0" onkeypress="return check(event)">
+                <label for="">I</label>
+                <br><br>
+                <input type="button" value="CONVERTIR" class="boton" onclick="operacion()">
+                <input type="button" value="REGRESAR" class="boton" onclick="inicio()">
+            </div>
+            <div  class="contenedor"  id="Seleciona">
+                <H3>Elige la opcion</H3>
+                <select name="" id="elige">
+                    <option value="calculadora">calculadora</option>
+                    <option value="PR">convertir de polar a rectangular</option>
+                    <option value="RP">convertir de rectangular a polar</option>
+                </select>
+                <input type="button" value="!!VAMOS!!" class="boton" onclick="mostrar()">
+            </div>
+            <div  class="contenedor"  id="CPR">
+                <H3>CONVERSION A RECTANGULAR</H3>
+                <input type="number" name="" id="" value="0" onkeypress="return check(event)">
+                <img src="Captura.JPG" alt="" >
+                <input type="number" name="" id="" value="0" onkeypress="return check(event)">
+                
+                <br><br>
+                <input type="button" value="CONVERTIR" class="boton" onclick="operacion()">
+                <input type="button" value="REGRESAR" class="boton" onclick="inicio()">
+            </div>
+        
+        
+            
+        </form>
+    </article>
+    <div>
+  <canvas id="myChart"></canvas>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+<script>
+    $("#calcula").css("display", "none");
+    $("#CRP").css("display", "none");
+    $("#CPR").css("display", "none");
+    function mostrar(){
+        var opcion=$('select[id=elige]').val();
+        if(opcion=="calculadora"){
+            $("#calcula").css("display", "block");
+            $("#Seleciona").css("display", "none");
+        }else if(opcion=="RP"){
+            $("#CRP").css("display", "block");
+            $("#Seleciona").css("display", "none");
+        }else if(opcion=="PR"){
+            $("#CPR").css("display", "block");
+            $("#Seleciona").css("display", "none");
+        }
+        
+    }
+    function inicio(){
+        $("#calcula").css("display", "none");
+        $("#CRP").css("display", "none");
+        $("#CPR").css("display", "none");
+        $("#Seleciona").css("display", "block");
+        //de las operaciones
+    }
+    function check(e) {
+        tecla = (document.all) ? e.keyCode : e.which;
+
+        //Tecla de retroceso para borrar, siempre la permite
+        if (tecla == 8) {
+            return true;
+        }
+
+        // Patrón de entrada, en este caso solo acepta numeros y letras
+        patron = /[0-9]/;
+        tecla_final = String.fromCharCode(tecla);
+        return patron.test(tecla_final);
+}
+</script>
+    
+</body>
+<!--
+<input class="tf w-input" id="txtCurp" name="txtCurp" maxlength="256" onkeypress="return check(event)" placeholder="No. de CURP" type="text">
+function check(e) {
+    tecla = (document.all) ? e.keyCode : e.which;
+
+    //Tecla de retroceso para borrar, siempre la permite
+    if (tecla == 8) {
+        return true;
+    }
+
+    // Patrón de entrada, en este caso solo acepta numeros y letras
+    patron = /[A-Za-z0-9]/;
+    tecla_final = String.fromCharCode(tecla);
+    return patron.test(tecla_final);
+}
+
+-->
+
+ 
+</html>

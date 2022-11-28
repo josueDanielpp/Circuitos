@@ -1,0 +1,72 @@
+header{
+    display: flex;
+    justify-content: space-around;
+    background:rgba(255, 166, 0, 0.551);
+    border-radius: 9px;
+
+    
+}
+.contenedor{
+    margin: 100px;
+}
+form{
+    border-radius: 10px;
+    background:brown;
+}
+html,body{
+    min-height: 100%;
+    height: 100%;
+    
+}
+h1,h4,h3{
+    text-align: center;
+    color:white;
+    font-weight: bold;
+    font-size: x-large;
+}
+label{
+    color:white;
+}
+.boton{
+    background: orangered;
+    font-weight: bold;
+    padding: 10px;
+    color: white;
+}
+article{
+    height: 80%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+}
+body {
+
+    /* Ubicación de la imagen */
+    background-image: url("https://images6.alphacoders.com/455/455565.png");
+    
+    /* Para dejar la imagen de fondo centrada, vertical y
+    
+    horizontalmente */
+    
+    background-position: center center;
+    
+    /* Para que la imagen de fondo no se repita */
+    
+    background-repeat: no-repeat;
+    
+    /* La imagen se fija en la ventana de visualización para que la altura de la imagen no supere a la del contenido */
+    
+    background-attachment: fixed;
+    
+    /* La imagen de fondo se reescala automáticamente con el cambio del ancho de ventana del navegador */
+    
+    background-size: cover;
+    
+    /* Se muestra un color de fondo mientras se está cargando la imagen
+    
+    de fondo o si hay problemas para cargarla */
+    
+    
+    }
