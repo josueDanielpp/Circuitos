@@ -53,19 +53,19 @@
                 <input type="button" value="CALCULADORA" class="boton" onclick="operacion()">
                 <input type="button" value="REGRESAR" class="boton" onclick="inicio()">
             </div>
+
+            <!---------------------Convertir de rectangular a polar---------------------->
             <div  class="contenedor"  id="CRP">
                 <H3>CONVERSION A POLAR</H3>
-                <input type="number" name="" id="" value="0" onkeypress="return check(event)">
-                <select name="" id="no1">
-                    <option value="+">+</option>
-                    <option value="-">-</option>
-                </select>
-                <input type="number" name="" id="" value="0" onkeypress="return check(event)">
+                <input type="number" name="real" id="real" value="" onkeypress="return check(event)">
+                <input type="number" name="imaginario" id="imaginario" value="" onkeypress="return check(event)">
                 <label for="">I</label>
                 <br><br>
-                <input type="button" value="CONVERTIR" class="boton" onclick="operacion()">
+                <input type="button" value="CONVERTIR" class="boton" onclick="operacionCRP()">
                 <input type="button" value="REGRESAR" class="boton" onclick="inicio()">
             </div>
+
+
             <div  class="contenedor"  id="Seleciona">
                 <H3>Elige la opcion</H3>
                 <select name="" id="elige">
@@ -119,6 +119,22 @@
         $("#Seleciona").css("display", "block");
         //de las operaciones
     }
+
+    //----------------------FUNCION DE CONVERSION RECTANGULARES A POLARES---------------------------------
+    function operacionCRP(){
+        var real=$('#real').val();
+        var imaginario=$('#imaginario').val();
+        var amplitud=Math.sqrt(Math.pow(real,2)+Math.pow(imaginario,2));
+        var fase=Math.atan2(imaginario,real)* 180 / Math.PI;;
+        console.log("numero real: "+ real);
+        console.log("numero imaginario: "+ imaginario);
+        console.log("amplitud: "+ amplitud);
+        console.log("fase: "+ fase);
+        Swal.fire('El numero en polar es: \n'+ amplitud.toFixed(4)+'  L  '+fase.toFixed(4)+"°");
+
+
+    }
+
     function check(e) {
         tecla = (document.all) ? e.keyCode : e.which;
 
@@ -133,7 +149,7 @@
         return patron.test(tecla_final);
 }
 </script>
-    
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 <!--
 <input class="tf w-input" id="txtCurp" name="txtCurp" maxlength="256" onkeypress="return check(event)" placeholder="No. de CURP" type="text">
