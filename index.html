@@ -17,40 +17,31 @@
     <br><br><br><br><br><br><br><br><br>
     <article>
         <form action="" id="formulario" >
-            
             <div class="contenedor" id="calcula">
                 <h1>CALCULADORA</h1>
                 <div>
                     <H3>INGRESA EL PRIMER NUMERO</H3>
-                    <input type="number" name="" id="" value="0" onkeypress="return check(event)" >
-                    <select name="" id="no1">
-                        <option value="+">+</option>
-                        <option value="-">-</option>
-                    </select>
-                    <input type="number" name="" id="" value="0" onkeypress="return check(event)">
+                    <input type="number" name="" id="no1r" value="0" onkeypress="return check(event)" >
+                    <input type="number" name="" id="no1i" value="0" onkeypress="return check(event)">
                     <label for="">I</label>
                 </div>
                 <div>
                     <H3>INGRESA EL SEGUNDO NUMERO</H3>
-                    <input type="number" name="" id="" value="0" onkeypress="return check(event)">
-                    <select name="" id="no2">
-                        <option value="+">+</option>
-                        <option value="-">-</option>
-                    </select>
-                    <input type="number" name="" id="" value="0" onkeypress="return check(event)">
+                    <input type="number" name="" id="no2r" value="0" onkeypress="return check(event)">
+                    <input type="number" name="" id="no2i" value="0" onkeypress="return check(event)">
                     <label for="">I</label>
                 </div>
                 <div>
                     <H3>ELIGA LA OPERACION A HACER</H3>
                     <select name="" id="operacion">
-                        <option value="">SUMA</option>
-                        <option value="">RESTA</option>
-                        <option value="">MULTIPLICACION</option>
-                        <option value="">DIVISION</option>
+                        <option value="SUMA">SUMA</option>
+                        <option value="RESTA">RESTA</option>
+                        <option value="MULTIPLICACION">MULTIPLICACION</option>
+                        <option value="DIVISION">DIVISION</option>
                     </select>
                 </div>
                 <br><br>
-                <input type="button" value="CALCULADORA" class="boton" onclick="operacion()">
+                <input type="button" value="CALCULADORA" class="boton" onclick="cal()">
                 <input type="button" value="REGRESAR" class="boton" onclick="inicio()">
             </div>
 
@@ -75,14 +66,16 @@
                 </select>
                 <input type="button" value="!!VAMOS!!" class="boton" onclick="mostrar()">
             </div>
+
+         <!---------------------Convertir de polar a rectangular---------------------->
             <div  class="contenedor"  id="CPR">
                 <H3>CONVERSION A RECTANGULAR</H3>
-                <input type="number" name="" id="" value="0" onkeypress="return check(event)">
+                <input type="number" name="" id="amplitud" value="" onkeypress="return check(event)">
                 <img src="Captura.JPG" alt="" >
-                <input type="number" name="" id="" value="0" onkeypress="return check(event)">
+                <input type="number" name="" id="fase" value="" onkeypress="return check(event)">
                 
                 <br><br>
-                <input type="button" value="CONVERTIR" class="boton" onclick="operacion()">
+                <input type="button" value="CONVERTIR" class="boton" onclick="operacionCPR()">
                 <input type="button" value="REGRESAR" class="boton" onclick="inicio()">
             </div>
         
@@ -125,15 +118,57 @@
         var real=$('#real').val();
         var imaginario=$('#imaginario').val();
         var amplitud=Math.sqrt(Math.pow(real,2)+Math.pow(imaginario,2));
-        var fase=Math.atan2(imaginario,real)* 180 / Math.PI;;
+        var fase=Math.atan2(imaginario,real)* 180 / Math.PI;
         console.log("numero real: "+ real);
         console.log("numero imaginario: "+ imaginario);
         console.log("amplitud: "+ amplitud);
         console.log("fase: "+ fase);
         Swal.fire('El numero en polar es: \n'+ amplitud.toFixed(4)+'  L  '+fase.toFixed(4)+"°");
-
-
     }
+    //----------------------FUNCION DE CONVERSION POLAR A RECTANGULAR---------------------------------
+    function operacionCPR(){
+        var amplitud=$('#amplitud').val();
+        var fase=$('#fase').val();
+        var coseno=Math.cos(fase*(Math.PI/180));
+        var seno=Math.sin(fase*(Math.PI/180));
+        console.log("coseno: "+ coseno);
+        console.log("seno: "+ seno);
+        var rectangularp1=amplitud*(coseno);
+        var rectangularp2=amplitud*(seno);
+        console.log("amplitud: "+ amplitud);
+        console.log("fase: "+ fase);
+        var signo='';
+        if(rectangularp2>0){
+            signo=' + ';
+        }else{
+            signo=' - ';
+        }
+        Swal.fire('El numero en rectangular es: \n'+ rectangularp1.toFixed(4)+signo+rectangularp2.toFixed(4)+"j");
+    }
+    function cal(){
+       
+       var n1R = parseFloat($("#no1r").val());
+       var n1I = parseFloat($("#no1i").val());
+       var n2R = parseFloat($("#no2r").val());
+       var n2I = parseFloat($("#no2i").val());
+       var operacion = $("#operacion").val();
+       //alert(operacion);
+      if(operacion=="SUMA"){
+           var suma=(n1R+n2R)+" "+(n1I+n2I)+"I";
+           //alert(suma);
+           Swal.fire("La suma es: "+suma);
+
+      }else if(operacion=="RESTA"){
+           var resta=(n1R-n2R)+" "+(n1I-n2I)+"I";
+           Swal.fire("La suma es: "+resta);
+      }else if(operacion=="MULTIPLICACION"){
+        multr=
+        Swal.fire("La multiplicacion es: "+multiplicacion);
+      }else if(operacion=="DIVISION"){
+
+       }
+       
+   }
 
     function check(e) {
         tecla = (document.all) ? e.keyCode : e.which;
